@@ -1,0 +1,49 @@
+#Horizontal {
+	list-style-type: none;
+	margin: 0;
+}
+#Horizontal li {
+	display: block;
+	float: left;
+	margin: 0 0 0 4px;
+	padding: 0 0 0 6px;
+}
+#Horizontal a {
+	text-decoration: none;
+	height: 32px;
+	display: block;
+	line-height: 34px;
+	color: #666;
+	font-size: 18px;
+	margin: 0;
+	padding: 0 10px;
+	float: left;
+}
+#Horizontal a:hover { text-decoration: none }
+
+#Horizontal span {
+	display: block;
+	margin: 0;
+	padding: 0 6px 0 0;
+	float: right;
+}
+
+#Horizontal li.active,
+#Horizontal li.active span,
+#Horizontal li.active span a,
+#Horizontal li:hover,
+#Horizontal li:hover a,
+#Horizontal li:hover span { background: url(images/gorizont_menu_red.png) no-repeat 50% -34px }
+
+#Horizontal li.active a, 
+#Horizontal li:hover a { color: #fff }
+
+#Horizontal li.active { background-position: 0 -34px }
+#Horizontal li.active span { background-position: 100% -34px }
+#Horizontal li.active span a { background-position: 50% -34px }
+
+#Horizontal li:hover { background-position: 0 -0px }
+#Horizontal li:hover span { background-position: 100% 0px }
+#Horizontal li:hover span a { background-position: 50% 0px }
+
+
