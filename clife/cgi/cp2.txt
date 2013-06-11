@@ -1,0 +1,53 @@
+#!/usr/bin/python
+# -*- coding:cp1251 -*-
+
+import cgi
+import _mysql
+
+print "Content-Type: text/html; charset=cp1251"
+print ""
+
+def who_is():
+  if "login" in form and "passwd" in form:
+    return "user"
+  elif "id" in form:
+    return "guest"
+
+form = cgi.FieldStorage()
+
+login=form['login'].value
+passwd=form['passwd'].value
+db=_mysql.connect(host="localhost", user="root", passwd="", db="citylife")
+db.query("SET NAMES cp1251")
+query="SELECT * FROM users WHERE mail=\'%s\' AND parol=\'%s\'"%(login,passwd)
+db.query(query)
+data=db.store_result()
+user=data.fetch_row(1,1)
+if len(user)==0:
+  pass
+else:
+  id=user[0]["id"]	
+  query="SELECT name, l_name FROM users WHERE id IN (SELECT user2 FROM friends WHERE user1=\'%s\')"%id
+  db.query(query)
+  data=db.store_result()
+  friends=data.fetch_row(3,1)
+  user=user[0]
+
+
+print "<html><head>"
+if len(user)==0:
+  pass
+else:
+  print "<title%s %s</title>"%(user.get("name"),user.get("l_name")) 
+print "<link rel=\"stylesheet\" href=\"/page.css\" type=\"text/css\" /></head><body>"
+if len(user)==0:
+  print "<script type=\"text/javascript\"> alert (\"Такого пользователя не существует\"); document.location.href=\"/index.htm\" </script>"
+print """<div id=\"container\"><div id=\"Horizontal\"><ul>
+   <li class='active'><a href='#'><span>%s %s</span></a></li>
+   <li class='active'><a href='#'><span>сообщения</span></a></li>
+   <li class='active'><a href='#'><span>фото</span></a></li>
+   <li class='active'><a href='#'><span>друзья</span></a></li>
+   <li class='active'><a href='#'><span>настройки</span></a></li>"""%(user.get("name"),user.get("l_name"))
+print "</ul></div>"
+print "</div>"
+print "</body></html>"

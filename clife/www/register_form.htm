@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Страница регистрации</title>
+<link rel="stylesheet" type="text/css" href="CSS/Register.css" />
+<script type="text/javascript">
+
+function valid ()
+{
+var message=""
+val=true
+if ((/^([a-z0-9][a-z0-9-]*[a-z0-9]\.?)*[a-z0-9]@([a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)+[a-z]{2,6}$/.test(document.forms.main.login.value)) && (document.forms.main.login.value.length<=30)  )
+	{
+
+	}
+	else
+	{
+	message+=("В поле ЛОГИН введите ваш E-mail. Максимальная длина 30 символов.\n")
+	val=false
+	}
+if (document.forms.main.name.value.length>16 || document.forms.main.name.value=="")
+	{
+	message+=("Не правильно заполнено поле - Имя.Длина имени не больше 16 символов\n")
+	val=false
+	}
+if (document.forms.main.l_name.value.length>16 || document.forms.main.l_name.value=="")
+	{
+	message+=("Не правильно заполнено поле - Фамилия.Длина фамилии не больше 16 символов\n")
+	val=false
+	}
+if (/(^19[3-9][0-9])|(^2[0-9]{3})-(0[0-9])|(1[12])-([0-2][0-9]$)|(3[0-1]$)/.test(document.forms.main.date.value))
+	{
+	cp=document.forms.main.date.value
+	cp2=cp.replace(/-/g,", ")
+	d=new Date(cp2)
+	now=new Date()
+	n_year=now.getYear()
+	year=d.getYear()
+	subs=n_year-year
+	if (subs<5)
+	{
+	message+="Вам должно быть больше 5 лет\n"
+	val=false
+	}
+	}
+	else
+	{
+	message+="Год может быть 1930- [-5 лет от текущего]\n"
+	val=false
+	}
+if (document.forms.main.city.value.length>16 || document.forms.main.city.value=="")
+	{
+	message+="В названии города может быть от 1 до 16 символов\n"
+	val=false
+	}
+if (document.forms.main.info.value=="")
+	{
+	message+="Напишите что-нибудь о себе\n"
+	val=false
+	}
+if (document.forms.main.passwd.value=="")
+	{
+	message+="Введите пароль\n"
+	val=false
+	}
+else if	(/^\w{6,16}$/.test(document.forms.main.passwd.value)) 
+	{
+	}
+else	{
+	message+="Пароль может состоять из букв, цифр, символа подчеркивания. От 6 до 16 символов.\n"
+	val=false
+	}
+if (document.forms.main.passwd.value!=document.forms.main.repeat_passwd.value)
+	{
+	message+="Пароли не совпадают\n"
+	val=false
+	}
+if (val==true)
+	{
+	document.forms.main.submit()
+	}
+else
+	{
+	alert (message)
+	}
+}
+
+</script>
+</head>
+<body>
+<div id="header"></div>
+
+
+<form name="main" method='POST' action="cgi/reg.cgi">
+<table align=center border=1>
+<!--Обработчики изменения поля
+-->
+		<TR>
+                <TD COLSPAN=2><center>Регистрация:</center></TD>
+        </TR>
+        <TR>
+                <TD>E-mail:</TD>
+				<TD><input type='text' value="slava-osadchiy@mail.ru" name='login' /></TD>
+        </TR>
+        <TR>
+                <TD>Имя:</TD>
+				<TD><input type='text' value="slava" name='name' /></TD>
+        </TR>
+        <TR>
+                <TD>Фамилия:</TD>
+				<TD><input type='text' value="osadchy" name='l_name' /></TD>
+        </TR>
+        <TR>
+                <TD>Дата рождения (год-месяц-день):</TD>
+				<TD><input type='text' size="10" value="1993-10-12" name='date' /></TD>
+        </TR>
+        <TR>
+                <TD>Пол:</TD>
+				<TD><select name="sex"><option selected value="М">М</option><option value="Ж">Ж</option></select></TD>
+        </TR>
+        <TR>
+                <TD>Город:</TD>
+				<TD><input type='text' value="Nikolayev" name='city' /></TD>
+        </TR>
+        <TR>
+                <TD>О себе:</TD>
+				<TD><input type='text' value="" name='info' "/></TD>
+        </TR>
+
+	<tr>
+	<td> Пароль </td> <td> <input type="password" name="passwd" /></td>
+	</tr>
+	<tr>
+	<td>Повторите пароль</td> <td> <input type="password" name="repeat_passwd"> </td>
+	</tr>
+	<TR>
+        <TD COLSPAN=2><center><input type='button' name="but" value='Зарегистрироваться' onclick="valid()"/></center></TD>
+				
+        </TR>
+		
+</table>
+
+
+</form>
+</body>
+</html>

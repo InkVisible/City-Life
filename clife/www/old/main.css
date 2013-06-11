@@ -1,0 +1,46 @@
+* {
+	margin:0%;
+	padding:0%;
+  }
+#block {
+	background: url(main.jpg) no-repeat;
+	padding: 0 0 0 30px;
+	margin: 100px auto;
+	width: 900px;
+	height: 600px;
+	}
+#frm	{
+	color:ecfb46;
+	padding:320px 200px;
+	text-align: center;
+	font-size: 25px;
+	font-weight:bold;
+	font-family: forte;
+	}
+.input {
+	margin:7px;
+	background-color:ecfb46;
+	color:790d2c;
+	font-family:forte;
+	font-size:20px;	
+	}
+#button-orange {
+	margin:7px;
+	padding:1%;
+	background: #c9360f;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ecfb46), to(#c9360f) );
+	background: -moz-linear-gradient(-90deg, #ecfb46, #c9360f);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#ecfb46', EndColorStr='#c9360f');
+	font-family:forte;
+	font-size:90%;
+	color:790d2c;
+	}
+#button-orange:hover {
+	background: #f8c939;
+	background: -webkit-gradient(linear, left top, left bottom, from(#c9360f), to(#ecfb46) );
+	background: -moz-linear-gradient(-90deg, #c9360f, #ecfb46);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#c9360f', EndColorStr='#ecfb46');
+	}
+#button-orange:active {
+	background: #f09c15;
+	}
