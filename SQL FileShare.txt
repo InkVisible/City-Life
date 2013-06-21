@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS `fileshare` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+)
